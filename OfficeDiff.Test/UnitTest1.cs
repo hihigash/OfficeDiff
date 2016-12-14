@@ -18,6 +18,7 @@
 // Sample Code.
 // ===========================================================================
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OfficeDiff;
 
 namespace Microsoft.Services.Sample.TeamFoundation.Test
 {
@@ -25,19 +26,12 @@ namespace Microsoft.Services.Sample.TeamFoundation.Test
     public class UnitTest1
     {
         [TestMethod]
-        public void Wordの比較()
+        [DeploymentItem(@".\Resources\SpreadSheet1.xlsx")]
+        [DeploymentItem(@".\Resources\SpreadSheet2.xlsx")]
+        public void ExcelTest()
         {
-            const string original = @"C:\works\a.docx";
-            const string target = @"C:\works\b.docx";
-            WordComparer.Compare(original, target);
-        }
-
-        [TestMethod]
-        public void PowerPointの比較()
-        {
-            const string original = @"C:\works\test1.pptx";
-            const string target = @"C:\works\test2.pptx";
-            PowerPointComparer.Compare(original, target);
+            ExcelComparer comparer = new ExcelComparer();
+            comparer.Compare("spreadsheet1.xlsx","spreadsheet2.xlsx");
         }
     }
 }

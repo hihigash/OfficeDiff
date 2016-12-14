@@ -26,33 +26,48 @@ namespace OfficeDiff
     {
         static void Main(string[] args)
         {
-            string orignalFileName = args[0];   // 比較元のファイル
-            string targetFileName = args[1];    // 比較先のファイル
+            if (args.Length != 2)
+            {
+                MessageBox.Show("OfficeDiff.exe <Compare file path> <To file path>","Usage");
+                return;
+            }
+
+            string orignalFileName = args[0];   // source file
+            string targetFileName = args[1];    // target file
 
             string extension = Path.GetExtension(orignalFileName);
 
             try
             {
-                if (String.Compare(extension, ".doc", StringComparison.OrdinalIgnoreCase) == 0 ||
-                    String.Compare(extension, ".docx", StringComparison.OrdinalIgnoreCase) == 0 ||
-                    String.Compare(extension, ".docm", StringComparison.OrdinalIgnoreCase) == 0)
+                IOfficeComparer comparer = null;
+                if (string.Compare(extension, ".doc", StringComparison.OrdinalIgnoreCase) == 0 ||
+                    string.Compare(extension, ".docx", StringComparison.OrdinalIgnoreCase) == 0 ||
+                    string.Compare(extension, ".docm", StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    WordComparer.Compare(orignalFileName, targetFileName);
+                    comparer = new WordComparer();
                 }
-                else if (String.Compare(extension, ".ppt", StringComparison.OrdinalIgnoreCase) == 0 ||
-                         String.Compare(extension, ".pptx", StringComparison.OrdinalIgnoreCase) == 0 ||
-                         String.Compare(extension, ".pptm", StringComparison.OrdinalIgnoreCase) == 0)
+                else if (string.Compare(extension, ".ppt", StringComparison.OrdinalIgnoreCase) == 0 ||
+                         string.Compare(extension, ".pptx", StringComparison.OrdinalIgnoreCase) == 0 ||
+                         string.Compare(extension, ".pptm", StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    PowerPointComparer.Compare(orignalFileName, targetFileName);
+                    comparer = new PowerPointComparer();
+                }
+                else if (string.Compare(extension, ".xls", StringComparison.OrdinalIgnoreCase) == 0 ||
+                         string.Compare(extension, ".xlsx", StringComparison.OrdinalIgnoreCase) == 0 ||
+                         string.Compare(extension, ".xlsm", StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    comparer = new ExcelComparer();
                 }
                 else
                 {
-                    MessageBox.Show("サポートされていない拡張子です", "エラー");
+                    MessageBox.Show("Unsupported extension types", "Error");
                 }
+
+                comparer?.Compare(orignalFileName, targetFileName);
             }
             catch (Exception)
             {
-                MessageBox.Show("アプリケーションの実行中にエラーが発生しました", "エラー");
+                MessageBox.Show("An error occurred while executing the application", "Error");
             }
         }
     }

@@ -40,9 +40,12 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExcelComparer.cs" />
+    <Compile Include="IOfficeComparer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="OfficeCompare.cs" />
+    <Compile Include="PowerPointComparer.cs" />
+    <Compile Include="WordComparer.cs" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

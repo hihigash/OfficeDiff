@@ -20,25 +20,9 @@ using Microsoft.Office.Core;
 
 namespace OfficeDiff
 {
-    public static class WordComparer
+    public class PowerPointComparer : IOfficeComparer
     {
-        public static void Compare(string orginal, string target)
-        {
-            Microsoft.Office.Interop.Word.Application word = new Microsoft.Office.Interop.Word.Application { Visible = true };
-            word.DocumentOpen += doc =>
-            {
-                doc.Compare(target);
-                doc.Close();
-                word.Activate();
-
-            };
-            word.Documents.Open(orginal);
-        }
-    }
-
-    public static class PowerPointComparer
-    {
-        public static void Compare(string orginal, string target)
+        public void Compare(string orginal, string target)
         {
             Microsoft.Office.Interop.PowerPoint.Application powerPoint = new Microsoft.Office.Interop.PowerPoint.Application { Visible = MsoTriState.msoCTrue };
             Microsoft.Office.Interop.PowerPoint.Presentation presentation = powerPoint.Presentations.Open(orginal);
