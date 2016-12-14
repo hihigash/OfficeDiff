@@ -11,6 +11,6 @@ OfficeDiff recognizes the application to use from the file extension's extension
 
 ## How to use
 
-```cmd
+```
 OfficeDiff.exe <Source file path> <Target file path>
 ```
