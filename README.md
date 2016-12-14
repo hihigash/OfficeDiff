@@ -4,8 +4,9 @@ OfficeDiff is an application for comparing document files of Microsoft Office pr
 
 OfficeDiff currently supports the following Office products:
 
- - Microsoft Word 2013
- - Microsoft PowerPoint 2013
+ - Microsoft Word 2013/2016
+ - Microsoft Excel 2013/2016 (ProPlus and Office 365 Only)
+ - Microsoft PowerPoint 2013/2016
 
 OfficeDiff recognizes the application to use from the file extension's extension.
 
