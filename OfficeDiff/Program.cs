@@ -18,12 +18,14 @@
 // ===========================================================================
 using System;
 using System.IO;
+using System.Runtime.Versioning;
 using System.Windows.Forms;
 
 namespace OfficeDiff
 {
     class Program
     {
+        [SupportedOSPlatform("windows")]
         static void Main(string[] args)
         {
             if (args.Length != 2)

@@ -19,19 +19,24 @@
 // ===========================================================================
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OfficeDiff;
+using System.IO;
+using System.Runtime.Versioning;
 
 namespace Microsoft.Services.Sample.TeamFoundation.Test
 {
     [TestClass]
     public class UnitTest1
     {
+        [SupportedOSPlatform("windows")]
         [TestMethod]
-        [DeploymentItem(@".\Resources\SpreadSheet1.xlsx")]
-        [DeploymentItem(@".\Resources\SpreadSheet2.xlsx")]
         public void ExcelTest()
         {
+            string currentDirectory = Directory.GetCurrentDirectory();
+            string original = Path.Combine(currentDirectory, "Resources\\spreadsheet1.xlsx");
+            string target = Path.Combine(currentDirectory, "Resources\\spreadsheet2.xlsx");
+
             ExcelComparer comparer = new ExcelComparer();
-            comparer.Compare("spreadsheet1.xlsx","spreadsheet2.xlsx");
+            comparer.Compare(original, target);
         }
     }
 }

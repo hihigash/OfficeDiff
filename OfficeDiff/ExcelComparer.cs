@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.Versioning;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -8,6 +9,7 @@ using Microsoft.Win32;
 
 namespace OfficeDiff
 {
+    [SupportedOSPlatform("windows")]
     public class ExcelComparer : IOfficeComparer
     {
         public void Compare(string original, string target)
